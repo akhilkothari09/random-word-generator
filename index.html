@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Word Generator</title>
+</head>
+<body>
+    <h1>Random Word Generator</h1>
+    <button onclick="generate()">Generate Word</button>
+    <pre id="output">Click to get a word...</pre>
+
+    <script>
+        async function generate() {
+            const res = await fetch('http://localhost:8000/generate', {
+                method: 'POST'
+            });
+            const data = await res.json();
+            document.getElementById('output').textContent =
+                `Word: ${data.word}\nDefinition: ${data.definition}\nExample: ${data.example}`;
+        }
+    </script>
+</body>
+</html>
